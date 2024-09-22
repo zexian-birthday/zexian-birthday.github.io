@@ -3,56 +3,90 @@ const fetchData = () => {
   fetch("customize.json")
     .then(data => data.json())
     .then(data => {
-      dataArr = Object.keys(data);
+      dataArr = Object.keys(data)
       dataArr.map(customData => {
         if (data[customData] !== "") {
           if (customData === "imagePath") {
             document
               .querySelector(`[data-node-name*="${customData}"]`)
-              .setAttribute("src", data[customData]);
+              .setAttribute("src", data[customData])
           } else {
-            document.querySelector(`[data-node-name*="${customData}"]`).innerText = data[customData];
+            document.querySelector(`[data-node-name*="${customData}"]`).innerText = data[customData]
           }
         }
 
         // Check if the iteration is over
         // Run amimation if so
-        if ( dataArr.length === dataArr.indexOf(customData) + 1 ) {
-          animationTimeline();
-        } 
-      });
-    });
-};
+        if (dataArr.length === dataArr.indexOf(customData) + 1) {
+          document.querySelector("#startButton").addEventListener("click", () => {
+            document.querySelector(".startSign").style.display = "none"
+            animationTimeline()
+          }
+          )
+          // animationTimeline()
+        }
+      })
+    })
+}
+
+let audio = null
+
+// 在文档加载时预加载音频
+document.addEventListener("DOMContentLoaded", () => {
+  audio = new Audio("music/bgMusic.mp3")
+  audio.preload = "auto"
+})
+
+const playPauseButton = document.getElementById('playPauseButton')
+let isPlaying = false // 初始状态为未播放
+
+playPauseButton.addEventListener('click', () => {
+  isPlaying = !isPlaying // 切换播放状态
+
+  if (isPlaying) {
+    // 如果当前是播放状态，则开始播放音频并更新按钮样式
+    audio.play()
+    playPauseButton.classList.add('playing')
+  } else {
+    // 如果当前是暂停状态，则暂停音频并更新按钮样式
+    audio.pause()
+    playPauseButton.classList.remove('playing')
+  }
+})
+
+
+
+
 
 // Animation Timeline
 const animationTimeline = () => {
   // Spit chars that needs to be animated individually
-  const textBoxChars = document.getElementsByClassName("hbd-chatbox")[0];
-  const hbd = document.getElementsByClassName("wish-hbd")[0];
+  const textBoxChars = document.getElementsByClassName("hbd-chatbox")[0]
+  const hbd = document.getElementsByClassName("wish-hbd")[0]
 
   textBoxChars.innerHTML = `<span>${textBoxChars.innerHTML
     .split("")
-    .join("</span><span>")}</span`;
+    .join("</span><span>")}</span`
 
   hbd.innerHTML = `<span>${hbd.innerHTML
     .split("")
-    .join("</span><span>")}</span`;
+    .join("</span><span>")}</span`
 
   const ideaTextTrans = {
     opacity: 0,
     y: -20,
     rotationX: 5,
     skewX: "15deg"
-  };
+  }
 
   const ideaTextTransLeave = {
     opacity: 0,
     y: 20,
     rotationY: 5,
     skewX: "-15deg"
-  };
+  }
 
-  const tl = new TimelineMax();
+  const tl = new TimelineMax()
 
   tl
     .to(".container", 0.1, {
@@ -115,7 +149,7 @@ const animationTimeline = () => {
       0.05
     )
     .to(".fake-btn", 0.1, {
-      backgroundColor: "rgb(127, 206, 248)"
+      backgroundColor: "#8FE3B6"
     })
     .to(
       ".four",
@@ -290,17 +324,18 @@ const animationTimeline = () => {
         rotation: 90
       },
       "+=1"
-    );
+    )
 
   // tl.seek("currentStep");
   // tl.timeScale(2);
 
   // Restart Animation on click
-  const replyBtn = document.getElementById("replay");
+  const replyBtn = document.getElementById("replay")
   replyBtn.addEventListener("click", () => {
-    tl.restart();
-  });
-};
+    tl.restart()
+
+  })
+}
 
 // Run fetch and animation in sequence
-fetchData();
+fetchData()
