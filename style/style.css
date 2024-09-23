@@ -4,7 +4,7 @@ html {
 
 body {
   margin: 0;
-  font-family: "Work Sans", sans-serif;
+  font-family: 'Work Sans', sans-serif;
 }
 
 .container {
@@ -80,7 +80,7 @@ body {
   right: 5px;
   bottom: 5px;
   color: #fff;
-  background-color: rgb(21, 161, 237);
+  background-color: #2ba245;
   padding: 5px 8px;
   border-radius: 3px;
 }
@@ -125,9 +125,10 @@ body {
 .six .hat {
   position: absolute;
   width: 80px;
-  top: -35px;
-  left: 41.5%;
-  /* transform: scale(0.1); */
+  top: -70px;
+  left: 49%;
+  /* 等比例扩大图片到2倍 */
+  transform: scale(1.1);
 }
 
 .baloons img {
@@ -235,25 +236,25 @@ body {
 /* Media Queries */
 @media screen and (max-height: 1000px) {
   .six .hat {
-    left: 40%;
+    left: 49%;
   }
 }
 
 @media screen and (max-height: 800px) {
   .six .hat {
-    left: 37%;
+    left: 46%;
   }
 }
 
 @media screen and (max-height: 700px) {
   .six .hat {
-    left: 32%;
+    left: 44%;
   }
 }
 
 @media screen and (max-height: 850px) and (max-width: 450px) {
   .six .hat {
-    left: 32%;
+    left: 42%;
   }
 }
 
@@ -296,4 +297,55 @@ body {
     font-size: 1.5rem;
     font-weight: lighter;
   }
+}
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.play-pause {
+  width: 50px;
+  height: 50px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url('../img/play.svg');
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 100;
+
+  position: absolute;
+  right: 5vw;
+  top: 5vh;
+}
+
+.play-pause.playing {
+  background-image: url('../img/pause.svg');
+  animation: rotate 2s linear infinite;
+}
+
+.startSign {
+  /* 居中 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 20vh 5vw;
+}
+
+.startSign .button {
+  padding: 1rem 1.6rem;
+  border: 1px solid #2ba245;
+  border-radius: 5px;
+}
+
+.startSign .button:hover {
+  background-color: #2ba245;
+  color: #fff;
+  padding: 1rem 1.6rem;
+  cursor: pointer;
 }
