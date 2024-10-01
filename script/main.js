@@ -1,8 +1,9 @@
 // Import the data to customize and insert them into page
 const fetchData = () => {
-  fetch("customize.json")
+  fetch("../customize.json")
     .then(data => data.json())
     .then(data => {
+      console.log("data",data)
       dataArr = Object.keys(data)
       dataArr.map(customData => {
         if (data[customData] !== "") {
