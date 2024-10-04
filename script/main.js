@@ -5,8 +5,8 @@ let countdownElement = document.getElementById('countdown');
 // Import the data to customize and insert them into page
 const fetchData = () => {
 	// 调用函数，传入未来日期字符串，格式："YYYY-MM-DD"
-	countdown("2024-10-16 00:00:00",flag);
-	// countdown("2024-10-02 17:33:00", flag);
+	// countdown("2024-10-16 00:00:00",flag);
+	countdown("2024-10-04 11:22:00", flag);
 	fetch("customize.json")
 		.then(data => data.json())
 		.then(data => {
