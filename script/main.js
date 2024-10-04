@@ -50,7 +50,7 @@ let audio = null
 document.addEventListener("DOMContentLoaded", () => {
 	// audio = new Audio("music/Count_On_Me.mp3")
 	audio = new Audio(
-		"https://lu-sycdn.kuwo.cn/ba97e8a8346614bafc437ddf3d4f4fc2/66fcf99c/resource/n1/98/25/2601659477.mp3"
+		"music/Count_On_Me.mp3"
 		);
 	audio.preload = "auto"
 })
