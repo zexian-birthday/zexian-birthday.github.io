@@ -334,6 +334,11 @@ const animationTimeline = () => {
 		}
 
 	})
+	// 
+	const enterDoor = document.getElementByI("lastSmile")
+	enterDoor.addEventListene("click",()=>{
+		window.location.hre("pages/cake.html")
+	})
 }
 
 // 页面倒计时  
